@@ -1,0 +1,14 @@
+def min_max_normalize_dataframe(df):
+    # Create a copy of the original DataFrame
+    normalized_df = df.copy()
+
+    # Iterate over each column in the DataFrame
+    for column in normalized_df.columns:
+        # Check if the column contains numeric data
+        if np.issubdtype(normalized_df[column].dtype, np.number):
+            # Perform min-max normalization on the numeric column
+            column_min = normalized_df[column].min()
+            column_max = normalized_df[column].max()
+            normalized_df[column] = (normalized_df[column] - column_min) / (column_max - column_min)
+
+    return normalized_df
